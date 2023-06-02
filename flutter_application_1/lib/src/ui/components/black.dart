@@ -1,0 +1,119 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/src/constants/button_color.dart';
+import 'package:flutter_application_1/src/constants/button_size.dart';
+
+import 'basic.dart';
+
+enum BlackButtonType {
+  // ignore: constant_identifier_names
+  ONE,
+  // ignore: constant_identifier_names
+  TWO,
+  // ignore: constant_identifier_names
+  THREE,
+  // ignore: constant_identifier_names
+  FOUR,
+  // ignore: constant_identifier_names
+  FIVE,
+  // ignore: constant_identifier_names
+  SIX,
+  // ignore: constant_identifier_names
+  SEVEN,
+  // ignore: constant_identifier_names
+  EIGHT,
+  // ignore: constant_identifier_names
+  NINE,
+  // ignore: constant_identifier_names
+  ZER0,
+  // ignore: constant_identifier_names
+  DOT
+}
+
+class BlackButton extends StatelessWidget {
+  final BlackButtonType type;
+  final Function() onPressed;
+  const BlackButton({
+    super.key,
+    required this.type,
+    required this.onPressed,
+    required String child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    switch (type) {
+      case BlackButtonType.ONE:
+        return _numberButton('1');
+
+      case BlackButtonType.TWO:
+        return _numberButton('2');
+
+      case BlackButtonType.THREE:
+        return _numberButton('3');
+
+      case BlackButtonType.FOUR:
+        return _numberButton('4');
+
+      case BlackButtonType.FIVE:
+        return _numberButton('5');
+
+      case BlackButtonType.SIX:
+        return _numberButton('6');
+
+      case BlackButtonType.SEVEN:
+        return _numberButton('7');
+
+      case BlackButtonType.EIGHT:
+        return _numberButton('8');
+
+      case BlackButtonType.NINE:
+        return _numberButton('9');
+
+      case BlackButtonType.ZER0:
+        return _zeroButton('0');
+
+      case BlackButtonType.DOT:
+        return _numberButton('.');
+    }
+  }
+
+  Widget _numberButton(String number) {
+    return BasicButton(
+        color: ButtonColor.black,
+        onPressed: onPressed,
+        child: _numberText(number));
+  }
+
+  Widget _zeroButton(String number) {
+    return SizedBox(
+      height: 80,
+      width: 180,
+      child: BasicButton(
+          color: ButtonColor.black,
+          onPressed: onPressed,
+          child: _zeroNumberText(number)),
+    );
+  }
+
+  Widget _numberText(String number) {
+    return Text(
+      number,
+      style: const TextStyle(fontSize: 35, color: CupertinoColors.white),
+    );
+  }
+
+  Widget _zeroNumberText(String number) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            number,
+            style: const TextStyle(fontSize: 35, color: CupertinoColors.white),
+          ),
+        ],
+      ),
+    );
+  }
+}
